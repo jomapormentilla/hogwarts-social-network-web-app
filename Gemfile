@@ -10,5 +10,7 @@ gem 'rake'
 gem 'require_all'
 gem 'thin'
 gem 'shotgun'
+gem 'nokogiri', '1.10.8'
+gem 'net-http'
 
 # gem "rails"

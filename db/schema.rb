@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_29_210658) do
+ActiveRecord::Schema.define(version: 2020_11_29_232627) do
 
   create_table "houses", force: :cascade do |t|
     t.string "name"
     t.string "founder"
     t.string "head_master"
+    t.string "mascot"
   end
 
   create_table "spells", force: :cascade do |t|
@@ -29,6 +30,8 @@ ActiveRecord::Schema.define(version: 2020_11_29_210658) do
     t.string "fname"
     t.string "lname"
     t.integer "house_id"
+    t.string "username"
+    t.string "password"
   end
 
 end
