@@ -18,14 +18,22 @@ class App < Sinatra::Base
     end
 
     get '/signup' do
-        erb :signup
+        if session[:loggedin]
+            redirect '/dashboard'
+        else
+            erb :signup
+        end
     end
 
     post '/' do
+        user = Wizard.all.find{ |user| user.username == params[:username] }
+
         if params[:password] != params[:confirm]
             @error = "Password does not match confirmed password"
         elsif params.values.include?("")
             @error = "All fields are required!"
+        elsif user
+            @error = "#{ params[:username] } already exists!"
         else
             w = Wizard.new
             w.fname = params[:fname]
@@ -37,6 +45,14 @@ class App < Sinatra::Base
             @error = "Congratulations, #{ params[:fname] } - You're a wizard!"
         end
         erb :login
+    end
+
+    get '/login' do
+        if session[:loggedin]
+            redirect '/dashboard'
+        else
+            redirect '/'
+        end
     end
 
     post '/login' do
