@@ -39,6 +39,7 @@ class App < Sinatra::Base
     get '/dashboard' do
         if session[:loggedin]
             @session = session
+            @spells = Spell.all
             erb :index
         else
             redirect '/'
