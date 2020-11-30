@@ -1,1 +1,8 @@
-<h1>Hello, Hogwarts!</h1>
+<div class="col-md-12">
+    <h1>Welcome back, <%= @session[:user].username %>!</h1>
+    <hr />
+</div>
+
+<div class="col-md-12">
+    <a href="/logout">Logout</a>
+</div>

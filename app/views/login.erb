@@ -1,0 +1,15 @@
+<div class="col-md-4"></div>
+<div class="col-md-4 text-center">
+    <h1>Login</h1>
+    <%= @error %>
+    <form action="/login" method="POST">
+        <input type="text" class="form-control" name="username" placeholder="Hogwarts ID" />
+        <br>
+        <div class="input-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" />
+            <div class="input-group-append">
+                <input type="submit" class="btn btn-primary" id="submit" value="Login" />
+            </div>
+        </div>
+    </form>
+</div>
