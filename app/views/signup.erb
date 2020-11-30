@@ -1,0 +1,30 @@
+<div class="row align-items-center" style="width: 100vw; height: 80vh;">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 text-center">
+        <img src="/images/hogwarts-logo-300x300.png" alt="Logo">
+        <h3>SIGN UP</h3>
+        <hr>
+        <form action="/" method="POST">
+            <div class="input-group">
+                <input class="form-control input-group-prepend" type="text" name="fname" placeholder="First Name" />
+                <input class="form-control input-group-append" type="text" name="lname" placeholder="Last Name" />
+            </div>
+            <br>
+            <input class="form-control" type="text" name="username" placeholder="Username" />
+            <br>
+            <div class="input-group">
+                <input class="form-control input-group-prepend" type="password" name="password" placeholder="Password" />
+                <input class="form-control input-group-append" type="password" name="confirm" placeholder="Confirm Password" />
+            </div>
+            <br>
+            <select class="form-control" name="type">
+                <option value="student">Student</option>
+                <option value="professor">Professor</option>
+            </select>
+            <br>
+            <input class="btn btn-primary btn-block" type="submit" value="Create Account" />
+        </form>
+        <hr>
+        <a href="/">Login</a>
+    </div>
+</div>

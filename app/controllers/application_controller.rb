@@ -17,6 +17,28 @@ class App < Sinatra::Base
         end
     end
 
+    get '/signup' do
+        erb :signup
+    end
+
+    post '/' do
+        if params[:password] != params[:confirm]
+            @error = "Password does not match confirmed password"
+        elsif params.values.include?("")
+            @error = "All fields are required!"
+        else
+            w = Wizard.new
+            w.fname = params[:fname]
+            w.lname = params[:lname]
+            w.username = params[:username]
+            w.password = params[:password]
+            w.save
+
+            @error = "Congratulations, #{ params[:fname] } - You're a wizard!"
+        end
+        erb :login
+    end
+
     post '/login' do
         if session[:loggedin]
             redirect '/dashboard'
