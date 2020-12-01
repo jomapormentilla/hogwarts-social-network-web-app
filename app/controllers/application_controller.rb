@@ -3,11 +3,12 @@ require_relative '../../config/environment'
 class App < Sinatra::Base
     configure do
         enable :sessions
-        set :session_secret, "mysupersecretpassword"
+        set :session_secret, 'mysupersecretpassword'
+        set :public, 'public'
+        set :views, 'app/views'
     end
-    
-    set :views, Proc.new { File.join(root, "../views/") }
 
+    # Main Landing Page, Login Page
     get '/' do
         if session[:loggedin]
             redirect '/dashboard'
@@ -17,36 +18,7 @@ class App < Sinatra::Base
         end
     end
 
-    get '/signup' do
-        if session[:loggedin]
-            redirect '/dashboard'
-        else
-            erb :signup
-        end
-    end
-
-    post '/' do
-        user = Wizard.all.find{ |user| user.username == params[:username] }
-
-        if params[:password] != params[:confirm]
-            @error = "Password does not match confirmed password"
-        elsif params.values.include?("")
-            @error = "All fields are required!"
-        elsif user
-            @error = "#{ params[:username] } already exists!"
-        else
-            w = Wizard.new
-            w.fname = params[:fname]
-            w.lname = params[:lname]
-            w.username = params[:username]
-            w.password = params[:password]
-            w.save
-
-            @error = "Congratulations, #{ params[:fname] } - You're a wizard!"
-        end
-        erb :login
-    end
-
+    # Redirect to Appropriate Path
     get '/login' do
         if session[:loggedin]
             redirect '/dashboard'
@@ -55,6 +27,7 @@ class App < Sinatra::Base
         end
     end
 
+    # Login Handler, Form Validation
     post '/login' do
         if session[:loggedin]
             redirect '/dashboard'
@@ -74,16 +47,54 @@ class App < Sinatra::Base
         end
     end
 
+    # Dashboard Page, Accessible only after successful login
     get '/dashboard' do
         if session[:loggedin]
             @session = session
             @spells = Spell.all
-            erb :index
+            erb :'dashboard/index'
         else
             redirect '/'
         end
     end
 
+    # Signup Form
+    get '/signup' do
+        @error = ""
+        if session[:loggedin]
+            redirect '/dashboard'
+        else
+            erb :signup
+        end
+    end
+
+    # Signup Form Validation
+    post '/' do
+        user = Wizard.all.find{ |user| user.username == params[:username] }
+
+        if params[:password] != params[:confirm]
+            @error = "Password does not match confirmed password"
+            erb :signup
+        elsif params.values.include?("")
+            @error = "All fields are required!"
+            erb :signup
+        elsif user
+            @error = "#{ params[:username] } already exists!"
+            erb :signup
+        else
+            w = Wizard.new
+            w.fname = params[:fname]
+            w.lname = params[:lname]
+            w.username = params[:username]
+            w.password = params[:password]
+            w.save
+
+            @error = "Congratulations, #{ params[:fname] } - You're a wizard!"
+            erb :login
+        end
+    end
+
+    # Logout
     get '/logout' do
         session.clear
         redirect '/'

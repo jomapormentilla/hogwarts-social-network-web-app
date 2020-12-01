@@ -4,6 +4,11 @@
         <img src="/images/hogwarts-logo-300x300.png" alt="Logo">
         <h3>SIGN UP</h3>
         <hr>
+        <% if @error != "" %>
+            <div class="alert alert-danger text-center">
+                <%= @error %>
+            </div>
+        <% end %>
         <form action="/" method="POST">
             <div class="input-group">
                 <input class="form-control input-group-prepend" type="text" name="fname" placeholder="First Name" />
