@@ -1,14 +1,28 @@
 class SpellController < App
     get '/dashboard/spells' do
-        erb :'dashboard/spells/index'
+        if session[:loggedin]
+            @spells = Spell.all
+            erb :'dashboard/spells/index'
+        else
+            redirect '/'
+        end
     end
 
     get '/dashboard/spells/new' do
-        erb :'dashboard/spells/new'
+        if session[:loggedin]
+            erb :'dashboard/spells/new'
+        else
+            redirect '/'
+        end
     end
     
     get '/dashboard/spells/:id' do
-        erb :'dashboard/spells/show'
+        if session[:loggedin]
+            @spell = Spell.find(params[:id])
+            erb :'dashboard/spells/show'
+        else
+            redirect '/'
+        end
     end
 
     post '/dashboard/spells' do
@@ -16,14 +30,19 @@ class SpellController < App
     end
 
     get '/dashboard/spells/:id/edit' do
-        erb :'dashboard/spells/edit'
+        if session[:loggedin]
+            @spell = Spell.find(params[:id])
+            erb :'dashboard/spells/edit'
+        else
+            redirect '/'
+        end
     end
 
     patch '/dashboard/spells/:id' do
-
+        @spell = Spell.find(params[:id])
     end
 
     delete '/dashboard/spells/:id' do
-
+        @spell = Spell.find(params[:id])
     end
 end

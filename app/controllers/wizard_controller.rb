@@ -1,14 +1,28 @@
 class WizardController < App
     get '/dashboard/wizards' do
-        erb :'dashboard/wizards/index'
+        if session[:loggedin]
+            @wizards = Wizard.all
+            erb :'dashboard/wizards/index'
+        else
+            redirect '/'
+        end
     end
 
     get '/dashboard/wizards/new' do
-        erb :'dashboard/wizards/new'
+        if session[:loggedin]
+            erb :'dashboard/wizards/new'
+        else
+            redirect '/'
+        end
     end
     
     get '/dashboard/wizards/:id' do
-        erb :'dashboard/wizards/show'
+        if session[:loggedin]
+            @wizard = Wizard.find(params[:id])
+            erb :'dashboard/wizards/show'
+        else
+            redirect '/'
+        end
     end
 
     post '/dashboard/wizards' do
@@ -16,14 +30,24 @@ class WizardController < App
     end
 
     get '/dashboard/wizards/:id/edit' do
-        erb :'dashboard/wizards/edit'
+        if session[:loggedin]
+            @wizard = Wizard.find(params[:id])
+            erb :'dashboard/wizards/edit'
+        else
+            redirect '/'
+        end
     end
 
-    patch '/dashboard/wizards/:id' do
+    put '/dashboard/wizards/:id' do
+        @wizard = Wizard.find(params[:id])
+        @wizard.fname = params[:fname]
+        @wizard.lname = params[:lname]
+        @wizard.save
 
+        redirect "/dashboard/wizards/#{ params[:id] }"
     end
 
     delete '/dashboard/wizards/:id' do
-
+        @wizard = Wizard.find(params[:id])
     end
 end

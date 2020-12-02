@@ -6,6 +6,7 @@ class App < Sinatra::Base
         set :session_secret, 'mysupersecretpassword'
         set :public, 'public'
         set :views, 'app/views'
+        set :method_override, true
     end
 
     # Main Landing Page, Login Page

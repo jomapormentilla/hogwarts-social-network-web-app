@@ -1,0 +1,18 @@
+<h1>Edit Wizard</h1>
+
+<form action="/dashboard/wizards/<%= @wizard.id %>" method="post">
+    <div class="col-sm-12 col-md-6">
+        <table class="table edit-model-form">
+            <tr>
+                <td>First Name: </td>
+                <td><input type="text" class="form-control" name="fname" value="<%= @wizard.fname %>"></td>
+            </tr>
+            <tr>
+                <td>Last Name: </td>
+                <td><input type="text" class="form-control" name="lname" value="<%= @wizard.lname %>"></td>
+            </tr>
+        </table>
+        <input type="hidden" name="_method" value="put">
+        <input type="submit" value="Edit" class="btn btn-primary btn-block" />
+    </form>
+</div>

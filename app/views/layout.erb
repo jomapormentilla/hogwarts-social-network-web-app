@@ -16,7 +16,7 @@
                     <div class="container-fluid px-0 text-right">
                         <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
                             <img src="/images/hogwarts-logo-300x300.png" alt="Logo" class="float-left py-1" style="width: 50px;"/>
-                            <a class="navbar-brand" href="#"><%= session[:user].username.upcase %></a>
+                            <a class="navbar-brand" href="/dashboard"><%= session[:user].username.upcase %></a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
@@ -32,7 +32,7 @@
                         </nav>
                     </div>
                 <% end %>
-                <div id="main-content" class="py-2">
+                <div id="main-content" class="py-2 col-md-12">
                     <%= yield %>
                 </div>
                 <div id="main-footer" class="col-md-12 text-center fixed-bottom py-1">
