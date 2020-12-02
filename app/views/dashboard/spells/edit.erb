@@ -1,0 +1,16 @@
+<h1>Edit Spell</h1>
+
+<form action="/dashboard/spells/<%= @spell.id %>" method="POST">
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <td style="width: 1%; white-space:nowrap; text-align: right;">Name:</td>
+            <td><input type="text" name="spell[name]" class="form-control" value="<%= @spell.name %>" /></td>
+        </tr>
+        <tr>
+            <td style="width: 1%; white-space:nowrap; text-align: right;">Effect:</td>
+            <td><input type="text" name="spell[effect]" class="form-control" value="<%= @spell.effect %>" /></td>
+        </tr>
+    </table>
+    <input type="hidden" name="_method" value="PATCH" />
+    <input type="submit" class="btn btn-warning btn-block" value="Edit Spell" />
+</form>

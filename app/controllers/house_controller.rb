@@ -39,7 +39,10 @@ class HouseController < App
     end
 
     patch '/dashboard/houses/:id' do
-        @house = House.find(params[:id])
+        house = House.find(params[:id])
+        house.update(params[:house])
+
+        redirect "/dashboard/houses/#{ house.id }"
     end
 
     delete '/dashboard/houses/:id' do

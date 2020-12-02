@@ -1,11 +1,21 @@
-<div class="col-md-12">
-    <h1>Hogwarts Spells</h1>
-</div>
+<div style="padding-bottom: 50px">
+    <div class="col-md-12">
+        <h1>Hogwarts Spells</h1>
+    </div>
 
-<div class="col-md-12">
-    <ol>
-        <% @spells.each do |spell| %>
-            <li><a href="/dashboard/spells/<%= spell.id %>"><%= spell.name %></a></li>
-        <% end %>
-    </ol>
+    <div class="col-md-12">
+        <hr>
+        <a href="/dashboard/spells/new" class="btn btn-primary">Create a New Spell</a>
+        <br><br>
+        <div class="table-responsive" style="height: 500px; border: solid 1px #aaa;">
+            <table class="table table-bordered table-striped table-condensed table-hover">
+                <% @spells.each.with_index(1) do |spell, index| %>
+                    <tr>
+                        <td style="width: 1%; white-space: nowrap;"><%= index %>.</td>
+                        <td><a href="/dashboard/spells/<%= spell.id %>"><%= spell.name %></a></td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>
 </div>

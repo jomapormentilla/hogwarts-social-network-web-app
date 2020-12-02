@@ -1,5 +1,15 @@
 <div class="col-md-12">
     <h1><%= @house.name %></h1>
-    <p>Founder: <%= @house.founder %></p>
-    <p>Head Master: <%= @house.head_master %></p>
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <td style="width: 1%; white-space:nowrap; text-align: right;">Founder:</td>
+            <td><%= @house.founder %></td>
+        </tr>
+        <tr>
+            <td style="width: 1%; white-space:nowrap; text-align: right;">Head Master:</td>
+            <td><%= @house.head_master %></td>
+        </tr>
+    </table>
+
+    <a href="/dashboard/houses/<%= @house.id %>/edit" class="btn btn-warning float-left">Edit</a>
 </div>

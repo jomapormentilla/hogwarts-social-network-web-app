@@ -16,13 +16,13 @@
                     <div class="container-fluid px-0 text-right">
                         <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
                             <img src="/images/hogwarts-logo-300x300.png" alt="Logo" class="float-left py-1" style="width: 50px;"/>
-                            <a class="navbar-brand" href="/dashboard"><%= session[:user].username.upcase %></a>
+                            <a class="navbar-brand" href="/dashboard/wizards/<%= session[:user].id %>"><%= session[:user].username.upcase %></a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
-                                <a class="nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
                                 <a class="nav-link" href="/dashboard/houses">Houses</a>
                                 <a class="nav-link" href="/dashboard/wizards">Wizards</a>
                                 <a class="nav-link" href="/dashboard/spells">Spells</a>

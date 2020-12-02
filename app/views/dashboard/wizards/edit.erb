@@ -1,15 +1,29 @@
 <h1>Edit Wizard</h1>
 
 <form action="/dashboard/wizards/<%= @wizard.id %>" method="post">
-    <div class="col-sm-12 col-md-6">
-        <table class="table edit-model-form">
+    <div class="col-md-12">
+        <table class="table table-striped table-bordered table-condesnsed edit-model-form">
             <tr>
-                <td>First Name: </td>
-                <td><input type="text" class="form-control" name="fname" value="<%= @wizard.fname %>"></td>
+                <td style="width: 1%; white-space:nowrap; text-align: right;">First Name: </td>
+                <td><input type="text" class="form-control" name="wizard[fname]" value="<%= @wizard.fname %>"></td>
             </tr>
             <tr>
-                <td>Last Name: </td>
-                <td><input type="text" class="form-control" name="lname" value="<%= @wizard.lname %>"></td>
+                <td style="width: 1%; white-space:nowrap; text-align: right;">Last Name: </td>
+                <td><input type="text" class="form-control" name="wizard[lname]" value="<%= @wizard.lname %>"></td>
+            </tr>
+            <tr>
+                <td style="width: 1%; white-space:nowrap; text-align: right;">House: </td>
+                <td>
+                    <select name="wizard[house_id]" class="form-control">
+                        <% @houses.each do |h| %>
+                            <% if h.id == @wizard.house_id %>
+                                <option value="<%= h.id %>" selected><%= h.name %></option>
+                            <% else %>
+                                <option value="<%= h.id %>"><%= h.name %></option>
+                            <% end %>
+                        <% end %>
+                    </select>
+                </td>
             </tr>
         </table>
         <input type="hidden" name="_method" value="put">

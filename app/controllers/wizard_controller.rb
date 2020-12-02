@@ -31,6 +31,7 @@ class WizardController < App
 
     get '/dashboard/wizards/:id/edit' do
         if session[:loggedin]
+            @houses = House.all
             @wizard = Wizard.find(params[:id])
             erb :'dashboard/wizards/edit'
         else
@@ -40,9 +41,7 @@ class WizardController < App
 
     put '/dashboard/wizards/:id' do
         @wizard = Wizard.find(params[:id])
-        @wizard.fname = params[:fname]
-        @wizard.lname = params[:lname]
-        @wizard.save
+        @wizard.update(params[:wizard])
 
         redirect "/dashboard/wizards/#{ params[:id] }"
     end

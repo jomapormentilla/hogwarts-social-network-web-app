@@ -1,4 +1,25 @@
-<div class="col-md-12">
+<div class="col-md-6">
     <h1><%= @spell.name %></h1>
-    <p>Effect: <%= @spell.effect %></p>
+    <div class="alert alert-success">
+        <%= @spell.effect %>
+    </div>
+
+    <a href="/dashboard/spells/<%= @spell.id %>/edit" class="btn btn-warning float-left">Edit</a>
+    <form action="/dashboard/spells/<%= @spell.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE" />
+        <input type="text" class="btn btn-danger float-left" value="Delete" />
+    </form>
+
+    <% if @spell.id != @spells.last.id %>
+        <a href="/dashboard/spells/<%= @spell.id + 1 %>" class="btn btn-primary float-right">Next</a>
+    <% else %>
+        <button href="#" class="btn btn-primary float-right" disabled>Next</button>
+    <% end %>
+    
+    <% if @spell.id != @spells.first.id %>
+        <a href="/dashboard/spells/<%= @spell.id - 1 %>" class="btn btn-secondary float-right">Prev</a>
+    <% else %>
+        <button href="#" class="btn btn-secondary float-right" disabled>Prev</button>
+    <% end %>
+
 </div>

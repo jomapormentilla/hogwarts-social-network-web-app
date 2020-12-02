@@ -1,11 +1,17 @@
 <div class="col-md-12">
     <h1>Hogwarts Wizards</h1>
+    <hr>
+    <a href="/dashboard/wizards/new" class="btn btn-primary">Create a New Wizard</a>
 </div>
 
+<br>
 <div class="col-md-12">
-    <ol>
-        <% @wizards.each do |wizard| %>
-            <li><a href="/dashboard/wizards/<%= wizard.id %>"><%= wizard.fname %> <%= wizard.lname %></a></li>
+    <table class="table table-bordered table-striped table-condensed table-hover">
+        <% @wizards.each.with_index(1) do |wizard, index| %>
+            <tr>
+                <td style="width: 1%; white-space: nowrap;"><%= index %>.</td>
+                <td><a href="/dashboard/wizards/<%= wizard.id %>"><%= wizard.fname %> <%= wizard.lname %></a></td>
+            </tr>
         <% end %>
-    </ol>
+    </table>
 </div>

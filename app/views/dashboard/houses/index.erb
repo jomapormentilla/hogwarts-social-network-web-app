@@ -3,9 +3,12 @@
 </div>
 
 <div class="col-md-12">
-    <ul>
-        <% @houses.each do |house| %>
-            <li><a href="/dashboard/houses/<%= house.id %>"><%= house.name %></a></li>
+    <table class="table table-striped table-bordered table-condensed">
+        <% @houses.each.with_index(1) do |house, index| %>
+            <tr>
+                <td style="width: 1%; white-space:nowrap;"><%= index %>.</td>
+                <td><a href="/dashboard/houses/<%= house.id %>"><%= house.name %></a></td>
+            </tr>
         <% end %>
-    </ul>
+    </table>
 </div>

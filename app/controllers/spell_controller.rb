@@ -18,6 +18,7 @@ class SpellController < App
     
     get '/dashboard/spells/:id' do
         if session[:loggedin]
+            @spells = Spell.all
             @spell = Spell.find(params[:id])
             erb :'dashboard/spells/show'
         else
@@ -26,7 +27,10 @@ class SpellController < App
     end
 
     post '/dashboard/spells' do
+        spell = Spell.new(params)
+        spell.save
 
+        redirect "/dashboard/spells/#{ spell.id }"
     end
 
     get '/dashboard/spells/:id/edit' do
@@ -39,7 +43,10 @@ class SpellController < App
     end
 
     patch '/dashboard/spells/:id' do
-        @spell = Spell.find(params[:id])
+        spell = Spell.find(params[:id])
+        spell.update(params[:spell])
+
+        redirect "/dashboard/spells/#{ spell.id }"
     end
 
     delete '/dashboard/spells/:id' do
