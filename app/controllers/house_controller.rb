@@ -1,14 +1,28 @@
 class HouseController < App
     get '/dashboard/houses' do
-        erb :'dashboard/houses/index'
+        if session[:loggedin]
+            @houses = House.all
+            erb :'dashboard/houses/index'
+        else
+            redirect '/'
+        end
     end
 
     get '/dashboard/houses/new' do
-        erb :'dashboard/houses/new'
+        if session[:loggedin]
+            erb :'dashboard/houses/new'
+        else
+            redirect '/'
+        end
     end
     
     get '/dashboard/houses/:id' do
-        erb :'dashboard/houses/show'
+        if session[:loggedin]
+            @house = House.find(params[:id])
+            erb :'dashboard/houses/show'
+        else
+            redirect '/'
+        end
     end
 
     post '/dashboard/houses' do
@@ -16,14 +30,19 @@ class HouseController < App
     end
 
     get '/dashboard/houses/:id/edit' do
-        erb :'dashboard/houses/edit'
+        if session[:loggedin]
+            @house = House.find(params[:id])
+            erb :'dashboard/houses/edit'
+        else
+            redirect '/'
+        end
     end
 
     patch '/dashboard/houses/:id' do
-
+        @house = House.find(params[:id])
     end
 
     delete '/dashboard/houses/:id' do
-
+        @house = House.find(params[:id])
     end
 end

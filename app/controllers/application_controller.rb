@@ -50,7 +50,6 @@ class App < Sinatra::Base
     # Dashboard Page, Accessible only after successful login
     get '/dashboard' do
         if session[:loggedin]
-            @session = session
             @spells = Spell.all
             erb :'dashboard/index'
         else

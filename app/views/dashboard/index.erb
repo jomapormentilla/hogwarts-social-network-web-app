@@ -1,29 +1,3 @@
-<div class="col-md-12 py-3">
-    <p>Welcome back, <%= @session[:user].username.upcase %></p>
-    <hr />
-</div>
-
-<div class="col-md-6">
-    <h5>Spells List</h5>
-    <div class="table-responsive" style="height: 500px; border: solid 1px #333;">
-        <table class="table table-striped table-bordered table-hover">
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Effect</th>
-            </tr>
-            <% @spells.each.with_index(1) do |spell, index| %>
-                <tr>
-                    <td><%= index %>.</td>
-                    <td><%= spell.name %></td>
-                    <td><%= spell.effect %></td>
-                </tr>
-            <% end %>
-        </table>
-    </div>
-</div>
-
 <div class="col-md-12">
-    <hr />
-    <a href="/logout">Logout</a>
+    <h2>The Dashboard</h2>
 </div>

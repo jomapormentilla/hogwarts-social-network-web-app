@@ -1,0 +1,11 @@
+<div class="col-md-12">
+    <h1>Hogwarts Houses</h1>
+</div>
+
+<div class="col-md-12">
+    <ul>
+        <% @houses.each do |house| %>
+            <li><a href="/dashboard/houses/<%= house.id %>"><%= house.name %></a></li>
+        <% end %>
+    </ul>
+</div>
