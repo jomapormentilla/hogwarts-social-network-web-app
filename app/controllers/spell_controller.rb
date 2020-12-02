@@ -18,8 +18,16 @@ class SpellController < App
     
     get '/dashboard/spells/:id' do
         if session[:loggedin]
+            @wizards = Wizard.all.sort_by &:username
             @spells = Spell.all
             @spell = Spell.find(params[:id])
+
+            prev_spell = @spells.find_index(@spell) - 1
+            @prev = @spells[prev_spell]
+            
+            next_spell = @spells.find_index(@spell) + 1
+            @next = @spells[next_spell]
+
             erb :'dashboard/spells/show'
         else
             redirect '/'
@@ -51,5 +59,8 @@ class SpellController < App
 
     delete '/dashboard/spells/:id' do
         @spell = Spell.find(params[:id])
+        @spell.destroy
+
+        redirect "/dashboard/spells"
     end
 end

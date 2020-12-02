@@ -1,25 +1,51 @@
-<div class="col-md-6">
-    <h1><%= @spell.name %></h1>
-    <div class="alert alert-success">
-        <%= @spell.effect %>
+<div class="col-md-12">
+    <div class="float-right">
+        <a href="/dashboard/spells/<%= @spell.id %>/edit" class="btn btn-warning">Edit</a>
+        <form action="/dashboard/spells/<%= @spell.id %>" method="POST" class="float-right px-2">
+            <input type="hidden" name="_method" value="DELETE" />
+            <input type="submit" class="btn btn-danger" value="Delete" />
+        </form>
     </div>
-
-    <a href="/dashboard/spells/<%= @spell.id %>/edit" class="btn btn-warning float-left">Edit</a>
-    <form action="/dashboard/spells/<%= @spell.id %>" method="POST">
-        <input type="hidden" name="_method" value="DELETE" />
-        <input type="text" class="btn btn-danger float-left" value="Delete" />
-    </form>
+    <h1><%= @spell.name %></h1>
+    <table class="table table-bordered table-striped table-condensed">
+        <tr>
+            <td style="width: 1%; white-space: nowrap; text-align: right;">Effect</td>
+            <td><%= @spell.effect %></td>
+        </tr>
+        <tr>
+            <td style="width: 1%; white-space: nowrap; text-align: right;">Owned By</td>
+            <td>
+                <% if @spell.student != nil %>
+                    <a href="/dashboard/wizards/<%= @spell.student.id %>"><%= @spell.student.username.upcase %></a>
+                <% else %>
+                    <form action="/dashboard/spells/<%= @spell.id %>" method="POST">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Unowned - Assign To:</span>
+                            </div>
+                            <select name="spell[student_id]" class="form-control">
+                                <% @wizards.each do |w| %>
+                                    <option value="<%= w.id %>"><%= w.username.upcase %></option>
+                                <% end %>
+                            </select>
+                            <input type="hidden" name="_method" value="PATCH" />
+                            <input type="submit" value="Assign" class="btn btn-secondary input-group-append" />
+                        </div>
+                    </form>
+                <% end %>
+            </td>
+        </tr>
+    </table>
 
     <% if @spell.id != @spells.last.id %>
-        <a href="/dashboard/spells/<%= @spell.id + 1 %>" class="btn btn-primary float-right">Next</a>
+        <a href="/dashboard/spells/<%= @next.id %>" class="btn btn-primary float-right" title="<%= @next.name %>">Next</a>
     <% else %>
         <button href="#" class="btn btn-primary float-right" disabled>Next</button>
     <% end %>
-    
+
     <% if @spell.id != @spells.first.id %>
-        <a href="/dashboard/spells/<%= @spell.id - 1 %>" class="btn btn-secondary float-right">Prev</a>
+        <a href="/dashboard/spells/<%= @prev.id %>" class="btn btn-secondary float-left" title="<%= @prev.name %>">Prev</a>
     <% else %>
         <button href="#" class="btn btn-secondary float-right" disabled>Prev</button>
     <% end %>
-
 </div>

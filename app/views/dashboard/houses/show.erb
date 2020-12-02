@@ -1,4 +1,6 @@
 <div class="col-md-12">
+    <a href="/dashboard/houses/<%= @house.id %>/edit" class="btn btn-warning float-right">Edit</a>
+
     <h1><%= @house.name %></h1>
     <table class="table table-striped table-bordered table-condensed">
         <tr>
@@ -11,5 +13,15 @@
         </tr>
     </table>
 
-    <a href="/dashboard/houses/<%= @house.id %>/edit" class="btn btn-warning float-left">Edit</a>
+    <% if @house.id != @houses.last.id %>
+        <a href="/dashboard/houses/<%= @next.id %>" class="btn btn-primary float-right" title="<%= @next.name %>">Next</a>
+    <% else %>
+        <button href="#" class="btn btn-primary float-right" disabled>Next</button>
+    <% end %>
+    
+    <% if @house.id != @houses.first.id %>
+        <a href="/dashboard/houses/<%= @prev.id %>" class="btn btn-secondary" title="<%= @prev.name %>">Prev</a>
+    <% else %>
+        <button href="#" class="btn btn-secondary" disabled>Prev</button>
+    <% end %>
 </div>

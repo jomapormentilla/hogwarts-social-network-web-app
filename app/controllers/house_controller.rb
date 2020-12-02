@@ -18,7 +18,15 @@ class HouseController < App
     
     get '/dashboard/houses/:id' do
         if session[:loggedin]
+            @houses = House.all
             @house = House.find(params[:id])
+
+            prev_house = @houses.find_index(@house) - 1
+            @prev = @houses[prev_house]
+            
+            next_house = @houses.find_index(@house) + 1
+            @next = @houses[next_house]
+
             erb :'dashboard/houses/show'
         else
             redirect '/'

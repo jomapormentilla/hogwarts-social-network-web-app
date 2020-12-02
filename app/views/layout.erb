@@ -20,23 +20,40 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
+
                             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
-                                <a class="nav-link" href="/dashboard/houses">Houses</a>
-                                <a class="nav-link" href="/dashboard/wizards">Wizards</a>
-                                <a class="nav-link" href="/dashboard/spells">Spells</a>
-                                <a class="nav-link" href="/logout">Logout</a>
+                                <div class="navbar-nav">
+                                    <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="/dashboard/houses">Houses</a>
+                                    <a class="nav-link" href="/dashboard/wizards">Wizards</a>
+                                    <a class="nav-link" href="/dashboard/spells">Spells</a>
+                                </div>
+
+                                <!--
+                                <form action="" method="GET" class="form-inline">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <select class="form-control btn btn-secondary">
+                                                <option>House</option>
+                                            </select>
+                                        </div>
+                                        <input class="form-control my-sm-0" type="search" placeholder="Search" aria-label="Search">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-success" type="submit">Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                -->
                             </div>
-                            </div>
+                            <a href="/logout" class="btn btn-outline-danger">Logout</a>
                         </nav>
                     </div>
                 <% end %>
                 <div id="main-content" class="py-2 col-md-12">
                     <%= yield %>
                 </div>
-                <div id="main-footer" class="col-md-12 text-center fixed-bottom py-1">
-                    <p>&copy; 2020 JOMATRIX Technologies - All rights reserved.</p>
+                <div id="main-footer" class="col-md-12 text-center fixed-bottom py-2">
+                    &copy; 2020 JOMATRIX Technologies - All rights reserved.
                 </div>
             </div>
         </div>

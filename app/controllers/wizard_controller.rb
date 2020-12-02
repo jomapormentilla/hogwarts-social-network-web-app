@@ -18,7 +18,15 @@ class WizardController < App
     
     get '/dashboard/wizards/:id' do
         if session[:loggedin]
+            @wizards = Wizard.all
             @wizard = Wizard.find(params[:id])
+            
+            prev_wiz = @wizards.find_index(@wizard) - 1
+            @prev = @wizards[prev_wiz]
+
+            next_wiz = @wizards.find_index(@wizard) + 1
+            @next = @wizards[next_wiz]
+            
             erb :'dashboard/wizards/show'
         else
             redirect '/'

@@ -10,8 +10,8 @@
         <div class="table-responsive" style="height: 500px; border: solid 1px #aaa;">
             <table class="table table-bordered table-striped table-condensed table-hover">
                 <% @spells.each.with_index(1) do |spell, index| %>
-                    <tr>
-                        <td style="width: 1%; white-space: nowrap;"><%= index %>.</td>
+                    <tr title="<%= spell.effect %>">
+                        <td style="width: 1%; white-space: nowrap; text-align: right;"><%= index %>.</td>
                         <td><a href="/dashboard/spells/<%= spell.id %>"><%= spell.name %></a></td>
                     </tr>
                 <% end %>
