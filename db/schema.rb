@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_29_232627) do
+ActiveRecord::Schema.define(version: 2020_12_03_040909) do
 
   create_table "houses", force: :cascade do |t|
     t.string "name"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_11_29_232627) do
     t.string "lname"
     t.integer "house_id"
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
   end
 
 end

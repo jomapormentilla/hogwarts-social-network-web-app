@@ -12,5 +12,6 @@ gem 'thin'
 gem 'shotgun'
 gem 'nokogiri', '1.10.8'
 gem 'net-http'
+gem 'bcrypt'
 
 # gem "rails"

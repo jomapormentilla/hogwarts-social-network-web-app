@@ -33,12 +33,11 @@ class App < Sinatra::Base
         if session[:loggedin]
             redirect '/dashboard'
         else
-            validate = Wizard.all.find{ |user| user.username == params[:username] && user.password == params[:password] }
+            user = Wizard.find_by( username: params[:username])
 
-            if validate != nil
-                session[:user] = validate
+            if user && user.authenticate(params[:password])
+                session[:user] = user
                 session[:loggedin] = true
-                @session = session
 
                 redirect '/dashboard'
             else
@@ -70,7 +69,7 @@ class App < Sinatra::Base
 
     # Signup Form Validation
     post '/' do
-        user = Wizard.all.find{ |user| user.username == params[:username] }
+        user = Wizard.find_by( username: params[:username] )
 
         if params[:wizard][:password] != params[:confirm]
             @error = "Password does not match confirmed password"
